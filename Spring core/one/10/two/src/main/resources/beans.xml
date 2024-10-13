@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="c" class="com.example.c.club">
+    <property name="name" value="Real Betis"/>
+</bean>
+
+
+
+    <bean id="p" class="com.example.c.player" autowire="byType">
+        <property name="name" value="ronaldo"/>
+        <property name="goals" value="924"/>
+    </bean>
+
+
+
+
+</beans>
