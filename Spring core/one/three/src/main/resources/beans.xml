@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean id="player" class="com.example.c.player">
+        <property name="name" value="messi"/>
+        <property name="goals" value="825"/>
+        <constructor-arg name="own" ref="affiliation"/>
+    </bean>
+
+    <bean id="affiliation" class="com.example.c.affiliation">
+        <constructor-arg name="name" value="blackrock"/>
+    </bean>
+
+    <bean id="club" class="com.example.c.club">
+        <property name="name" value="miami fc"/>
+        <property name="revenue" value="10000000"/>
+    </bean>
+</beans>

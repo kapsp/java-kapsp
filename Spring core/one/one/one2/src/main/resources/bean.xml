@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="footballs" class="com.example.c.footballer">
+    <property name="player" value="messsi"/>
+    <property name="goals" value="845"/>
+    <property name="assists" value="400"/>
+</bean>
+
+    <bean id="footballs2" class="com.example.c.footballer">
+        <constructor-arg name="player" value="ronaldo"/>
+        <constructor-arg name="goals" value="925"/>
+        <constructor-arg name="assists" value="300"/>
+    </bean>
+</beans>
