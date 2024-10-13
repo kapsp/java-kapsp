@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="c1" class="com.example.c.Suit">
+    <property name="shirt" value="white"/>
+    <property name="pants" value="blue"/>
+    <property name="coat" value="raymond"/>
+</bean>
+    <bean id="c2" class="com.example.c.Suit" parent="c1">
+        <property name="pants" value="black"/>
+        <property name="coat" value="luis vutton"/>
+             </bean>
+
+
+</beans>
