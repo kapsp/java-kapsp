@@ -1,0 +1,30 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> st=new Stack<>();
+        for(String t:tokens){
+            if(isop(t)){
+                int a=st.pop();
+                int b=st.pop();
+                st.push(apply(b,a,t));
+            }else{
+                st.push(Integer.parseInt(t));
+            }
+        }
+        return st.pop();
+    }
+
+    public static boolean isop( String token){
+        return token.equals("+")||token.equals("*")||token.equals("-")||token.equals("/");
+    }
+
+    public static int apply(int a,int b, String token){
+        switch(token){
+            case "+":return a+b;
+            case"-":return a-b;
+            case "/": return a/b;
+            case "*" :return a*b;
+            default:return -1;
+
+        }
+    }
+}

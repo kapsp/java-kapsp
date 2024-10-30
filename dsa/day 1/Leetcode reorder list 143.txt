@@ -1,0 +1,39 @@
+//miidle ,reverse,merge
+
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head==null){
+            return ;
+        }
+
+        ListNode slow=head;
+        ListNode fast=head;
+
+        while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        ListNode prev=null;
+        ListNode temp=slow;
+        while(slow!=null){
+            temp=slow.next;
+            slow.next=prev;
+            prev=slow;
+            slow=temp;
+        }
+
+        ListNode first=head;
+        ListNode second=prev;
+        ListNode temp2=head;
+        while(second.next!=null){
+            temp2=first.next;
+            first.next=second;
+            first=temp2;
+
+            temp2=second.next;
+            second.next=first;
+            second=temp2;
+        }
+    }
+}
