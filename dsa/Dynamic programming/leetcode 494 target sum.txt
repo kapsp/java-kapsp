@@ -1,0 +1,28 @@
+class Solution {
+    public int findTargetSumWays(int[] nums, int target) {
+        int totalsum=0;
+        for(int n:nums){
+            totalsum+=n;
+        }
+
+        if(totalsum<target||(totalsum+target)%2!=0){
+            return 0;
+        }
+
+        int subset=(totalsum+target)/2;
+
+        if(subset<0){
+            return 0;
+        }
+    int [] dp=new int[subset+1];
+    dp[0]=1;
+
+     for(int n:nums){
+        for(int i=subset;i>=n;i--){
+            dp[i]+=dp[i-n];
+        }
+     }
+
+     return dp[subset];
+}
+}

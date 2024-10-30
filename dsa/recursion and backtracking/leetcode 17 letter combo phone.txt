@@ -1,0 +1,26 @@
+class Solution {
+
+    public String [] digitletter={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    public List<String> letterCombinations(String digits) {
+        List<String> Combinations=new ArrayList<>();
+        if(digits.length()==0||digits==null){
+            return Combinations;
+        }
+        String curr="";
+        int index=0;
+        btdl(digits,Combinations,curr,index);
+        return Combinations;
+    }
+
+    private void btdl(String digits,List<String> Combinations,String curr,int index){
+        if(index==digits.length()){
+            Combinations.add(curr);
+            return;
+        }
+
+        String letter=digitletter[digits.charAt(index)-'0'];
+        for(char l:letter.toCharArray()){
+            btdl(digits,Combinations,curr+l,index+1);
+        }
+    }
+}
