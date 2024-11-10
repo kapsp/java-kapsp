@@ -1,0 +1,36 @@
+o solve LeetCode problem 1762. Buildings With an Ocean View using Stacks, the approach leverages the stack to keep track of buildings that have an ocean view.
+
+Approach:
+We will use a stack to store the indices of buildings that have an ocean view.
+Traverse the array from left to right.
+While the stack is not empty and the current building height is greater than or equal to the height of the building at the index on top of the stack, pop the stack.
+Push the current index onto the stack.
+The stack will contain the indices of the buildings with ocean views in the correct order.
+Java Code with Stack:
+java
+Copy code
+
+
+
+import java.util.*;
+
+public class OceanViewBuildingsWithStack {
+    public int[] findBuildings(int[] heights) {
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < heights.length; i++) {
+            // Remove buildings that are blocked by the current building
+            while (!stack.isEmpty() && heights[stack.peek()] <= heights[i]) {
+                stack.pop();
+            }
+            stack.push(i);
+        }
+
+        // Convert stack to array
+        int[] result = new int[stack.size()];
+        for (int i = result.length - 1; i >= 0; i--) {
+            result[i] = stack.pop();
+        }
+
+        return result;
+    }
