@@ -1,0 +1,74 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class MinimumWindowSubstring {
+    public static String minWindow(String s, String t) {
+        if (s == null || t == null || s.length() < t.length()) {
+            return "";
+        }
+
+        // Frequency map for characters in t
+        Map<Character, Integer> tFreq = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            if (tFreq.containsKey(c)) {
+                tFreq.put(c, tFreq.get(c) + 1);
+            } else {
+                tFreq.put(c, 1);
+            }
+        }
+
+        // Frequency map for the sliding window
+        Map<Character, Integer> windowFreq = new HashMap<>();
+        int left = 0, right = 0, minLength = Integer.MAX_VALUE, start = 0;
+        int required = tFreq.size(); // Number of unique characters in t that need to be matched
+        int formed = 0; // Number of characters that have met their required frequency
+
+        while (right < s.length()) {
+            char c = s.charAt(right);
+
+            // Update window frequency map manually
+            if (windowFreq.containsKey(c)) {
+                windowFreq.put(c, windowFreq.get(c) + 1);
+            } else {
+                windowFreq.put(c, 1);
+            }
+
+            // Check if the current character matches the required frequency in t
+            if (tFreq.containsKey(c) && windowFreq.get(c).intValue() == tFreq.get(c).intValue()) {
+                formed++;
+            }
+
+            // Try to contract the window until it ceases to be 'desirable'
+            while (left <= right && formed == required) {
+                c = s.charAt(left);
+
+                // Update the result if this window is smaller
+                if (right - left + 1 < minLength) {
+                    minLength = right - left + 1;
+                    start = left;
+                }
+
+                // Remove the left character from the window
+                if (windowFreq.containsKey(c)) {
+                    windowFreq.put(c, windowFreq.get(c) - 1);
+                }
+                if (tFreq.containsKey(c) && windowFreq.get(c) < tFreq.get(c)) {
+                    formed--;
+                }
+
+                left++; // Shrink the window from the left
+            }
+
+            right++; // Expand the window from the right
+        }
+
+        return minLength == Integer.MAX_VALUE ? "" : s.substring(start, start + minLength);
+    }
+
+    public static void main(String[] args) {
+        String s = "timetopractice";
+        String t = "toc";
+        String result = minWindow(s, t);
+        System.out.println("Smallest window: " + result); // Output: "BANC"
+    }
+}
