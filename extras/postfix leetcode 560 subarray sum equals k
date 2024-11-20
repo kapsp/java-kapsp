@@ -1,0 +1,23 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        Map<Integer,Integer> Prefixmap=new HashMap<>();
+          Prefixmap.put(0,1);
+        int prefixsum=0;
+        int count=0;
+        for(int n:nums){
+            prefixsum+=n;
+
+            int complement=prefixsum-k;
+
+            if(Prefixmap.containsKey(complement)){
+                count+=Prefixmap.get(complement);
+            }
+            if(Prefixmap.containsKey(prefixsum)){
+                Prefixmap.put(prefixsum,Prefixmap.get(prefixsum)+1);
+            }else{
+                Prefixmap.put(prefixsum,1);
+            }
+        }
+     return count;      
+}
+}
